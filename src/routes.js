@@ -7,6 +7,10 @@ import User from './Pages/User';
 
 const Stack = createStackNavigator();
 
+function getHeaderTitle(route) {
+  return route.params.user.name;
+}
+
 const Routes = () => {
   return (
     <NavigationContainer>
@@ -23,7 +27,18 @@ const Routes = () => {
             },
           }}
         />
-        <Stack.Screen name="User" component={User} />
+        <Stack.Screen
+          name="User"
+          component={User}
+          options={({route}) => ({
+            headerTitle: getHeaderTitle(route),
+            headerTitleAlign: 'center',
+            headerTintColor: '#fff',
+            headerStyle: {
+              backgroundColor: 'orange',
+            },
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
